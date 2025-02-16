@@ -16,7 +16,7 @@ const travel = async (req, res, next) => {
     .then((res) => res.json())
     .then((json) => {
       // console.log(json)
-      
+
       let message = null;
       if (!(json instanceof Array)) {
         message = "API lookup error";
