@@ -23,4 +23,24 @@ export class TripCardComponent implements OnInit {
     localStorage.setItem('tripCode', trip.code)
     this.router.navigate(['edit-trip'])
   }
+
+  public deleteTrip(trip: Trip) {
+    localStorage.removeItem('tripCode')
+    localStorage.setItem('tripCode', trip.code)
+    
+    
+    console.log(trip.code)
+    const apiUrl = `http://localhost:3000/api/trips/${trip.code}`
+    
+    fetch(apiUrl, {
+      method: 'DELETE',
+      headers: {
+          // 'Content-Type': 'application/json'
+        },
+      })
+      
+      
+      this.router.navigate([''])
+
+  }
 }

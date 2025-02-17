@@ -30,6 +30,10 @@ export class TripListingComponent implements OnInit {
     this.router.navigate(['add-trip'])
   }
 
+  public deleteTrip(): void {
+    this.router.navigate(['delete-trip'])
+  }
+
   private getStuff(): void {
     this.tripDataService.getTrips()
       .subscribe({
