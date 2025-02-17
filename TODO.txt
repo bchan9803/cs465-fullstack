@@ -1,8 +1,0 @@
-TODO: delete "angular copy.json" file
-
-
--> Edit trips
-
-
-
-/// if problem, go to app.component.ts lines (8 and 9)
