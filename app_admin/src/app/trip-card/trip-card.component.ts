@@ -34,13 +34,14 @@ export class TripCardComponent implements OnInit {
     
     fetch(apiUrl, {
       method: 'DELETE',
-      headers: {
-          // 'Content-Type': 'application/json'
-        },
       })
       
-      
-      this.router.navigate([''])
-
+      try {
+        this.router.navigate(['/'])
+        console.log(`Trip ${trip.code} deleted!`)
+      }
+      catch {
+        console.error('Error: Could not delete trip!')
+      }
   }
 }
