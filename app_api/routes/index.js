@@ -12,7 +12,7 @@ router.route("/login").post(authController.login);
 router.route("/register").post(authController.register);
 
 // define route for login endpoint
-router.route("/login").post(authController.login);
+// router.route("/login").post(authController.login);
 
 // method to auth our JWT
 function authenticateJWT(req, res, next) {

@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-// import { trips } from '../data/trips';
+import { Component, NgModule, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TripCardComponent } from '../trip-card/trip-card.component';
 import { TripDataService } from '../services/trip-data.service'
 import { Trip } from '../models/trip'
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../services/authentication.service';
 
 
 @Component({
@@ -13,17 +13,24 @@ import { Router } from '@angular/router';
   imports: [CommonModule, TripCardComponent],
   templateUrl: './trip-listing.component.html',
   styleUrl: './trip-listing.component.css',
-  providers: [TripDataService]
+  providers: [TripDataService, AuthenticationService]
+  
 })
+
 export class TripListingComponent implements OnInit {
   trips!: Trip[]
   message: string = ''
   
   constructor(
+    private router: Router,
     private tripDataService: TripDataService,
-    private router: Router
+    private authenticationService: AuthenticationService
   ) {
     console.log('trip-listing constructor')
+  }
+
+  public isLoggedIn() {
+    return this.authenticationService.isLoggedIn()
   }
 
   public addTrip(): void {
@@ -47,13 +54,14 @@ export class TripListingComponent implements OnInit {
           console.log(this.message)
         },
         error: (error: any) => {
-          console.error('Error: ' + error)
+          console.error('tripListingCompError: ' + error)
         }
       })
   }
 
   ngOnInit(): void {
     console.log('ngOnInit')
+    this.tripDataService.getTrips()
     this.getStuff()
   }
 }
